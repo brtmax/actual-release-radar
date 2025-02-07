@@ -31,19 +31,12 @@ This solves this problem and creates a new playlist with all the recent releases
    - Client Secret (click "Show Client Secret" to reveal it)
 
 ### 2. Environment Setup
-
-1. Clone this repository:
-```bash
-git clone [repository-url]
-cd [repository-name]
-```
-
-2. Install required packages:
+1. Install required packages:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Create a `.env` file in the project directory with your Spotify credentials:
+2. Create a `.env` file in the project directory with your Spotify credentials:
 ```env
 SPOTIFY_CLIENT_ID=your_client_id_here
 SPOTIFY_CLIENT_SECRET=your_client_secret_here
