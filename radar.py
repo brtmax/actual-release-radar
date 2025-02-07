@@ -24,7 +24,6 @@ class SpotifyConfig:
 
 @dataclass
 class ReleaseInfo:
-    """Data class for storing release information"""
     artist: str
     track_name: str
     album_name: str
@@ -32,8 +31,6 @@ class ReleaseInfo:
     track_url: str
 
 class SpotifyReleaseRadar:
-    """Main class for handling Spotify release radar functionality"""
-
     def __init__(self, config: SpotifyConfig):
         """Initialize with Spotify configuration"""
         self.sp = spotipy.Spotify(
@@ -72,7 +69,7 @@ class SpotifyReleaseRadar:
         return artists
 
     def get_artist_albums(self, artist_id: str) -> List[Dict]:
-        """Get all albums for an artist using pagination"""
+        """Get all albums for an artist using pagination, bump limit if not all songs are shown"""
         albums = []
         results = self.sp.artist_albums(
             artist_id,
@@ -174,14 +171,13 @@ class SpotifyReleaseRadar:
             description=playlist_description
         )
 
-        # Add tracks in batches (Spotify's 100 track limit)
+        # Add tracks in batches (Spotify's 100 track limit I believe)
         for i in range(0, len(track_ids), 100):
             self.sp.playlist_add_items(playlist['id'], track_ids[i:i+100])
 
         return playlist
 
 def main():
-    """Main execution function"""
     try:
         config = SpotifyConfig(
             client_id="your_client_id",
