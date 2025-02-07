@@ -109,20 +109,12 @@ If you encounter rate limiting issues:
 ### No Releases Found
 - Check that you're following the artists on Spotify
 - Try increasing the number of days to look back: `--days 30`
-- Verify that the artists have released new music in the specified time period
 
-## Contributing
+### Playlist not created
+Somtimes a restart of Spotify is needed in order to update the playlists. 
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### Stuck on "Fetching followed artists..." or other fetching operations
+Not sure what causes this, but loggin out of the Spotify Developer Web Console and loggin back in fixed this for me. 
 
 ## License
-
-[Your chosen license]
-
-## Notes
-
-- The script looks for both albums and singles
-- It may take a while to run if you follow many artists
-- Created playlists will appear in your Spotify account immediately
-- The script uses Spotify's API rate limits, so very large requests might need to be broken up
-`
+GLWTS
