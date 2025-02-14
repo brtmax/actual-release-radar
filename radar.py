@@ -5,6 +5,10 @@ import time
 from typing import List, Dict, Tuple, Optional
 import logging
 from dataclasses import dataclass
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(
@@ -180,9 +184,9 @@ class SpotifyReleaseRadar:
 def main():
     try:
         config = SpotifyConfig(
-            client_id="your_client_id",
-            client_secret="your_client_secret",
-            redirect_uri="http://localhost:8888/callback"
+            client_id=os.getenv('SPOTIFY_CLIENT_ID'),
+            client_secret=os.getenv('SPOTIFY_CLIENT_SECRET'),
+            redirect_uri=os.getenv('SPOTIFY_REDIRECT_URI')
         )
 
         radar = SpotifyReleaseRadar(config)
