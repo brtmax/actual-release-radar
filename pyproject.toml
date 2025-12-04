@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "spotify-actual-release-radar"
+version = "0.1.0"
+description = "Generate a Spotify playlist with new releases from followed artists"
+authors = ["Max Bretschneider <maxbretschneider@mailbox.org>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    { include = "spotify_radar" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+spotipy = "^2.0"
+python-dotenv = "^1.2.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4"
+black = "^23.7"
+flake8 = "^6.1"
+mypy = "^1.6"
+
+[tool.poetry.scripts]
+spotify-radar = "spotify_radar.cli:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -31,60 +31,57 @@ This solves this problem and creates a new playlist with all the recent releases
    - Client Secret (click "Show Client Secret" to reveal it)
 
 ### 2. Environment Setup
-1. Install required packages:
+[Poetry](https://python-poetry.org/) is used to manage dependencies. You can install it by: 
+```
+curl -sSL https://install.python-poetry.org | python3 -
+```
+Then just create a virtual environment and install dependencies:
+```
+poetry install
+```
+
+### 3. Spotify setup 
+You have to authenticate using the client ID and secret from step 1. To do that, either create a .env file like below, or pass in the credentials via
 ```bash
-pip install -r requirements.txt
+spotify-radar \
+  --days 7 \
+  --client-id YOUR_SPOTIFY_CLIENT_ID \
+  --client-secret YOUR_SPOTIFY_CLIENT_SECRET \
+  --redirect-uri http://127.0.0.1:8888/callback
+```
+or export them as environment variables
+```bash
+export SPOTIFY_CLIENT_ID="YOUR_SPOTIFY_CLIENT_ID"
+export SPOTIFY_CLIENT_SECRET="YOUR_SPOTIFY_CLIENT_SECRET"
+export SPOTIFY_REDIRECT_URI="http://127.0.0.1:8888/callback"
 ```
 
-2. Create a `.env` file in the project directory with your Spotify credentials:
-```env
-SPOTIFY_CLIENT_ID=your_client_id_here
-SPOTIFY_CLIENT_SECRET=your_client_secret_here
-SPOTIFY_REDIRECT_URI=http://127.0.0.1:8888/callback
-```
 Do not use "localhost", see [Spotify security changes](https://developer.spotify.com/blog/2025-02-12-increasing-the-security-requirements-for-integrating-with-spotify).
-
 ## Usage
-
-### Basic Usage
 
 Run the script with default settings (7 days, private playlist):
 ```bash
-python script.py
+spotify-radar --days N
 ```
 
 ### Options
-
 Show all available options:
 ```bash
 python script.py --help
 ```
 
-Available options:
-- `--days`: Number of days to look back for new releases (default: 7)
-- `--playlist-name`: Custom name for the playlist (default: "New Releases YYYY-MM-DD")
-- `--public`: Make the playlist public (default: private)
-- `--delay`: Delay between API calls in seconds (default: 0.1)
-
-### Examples
-
-Create a playlist with releases from the last 14 days:
 ```bash
-python script.py --days 14
-```
-
-Create a public playlist with a custom name:
-```bash
-python script.py --public --playlist-name "My Fresh Tracks"
-```
-
-Create a playlist with releases from the last month:
-```bash
-python script.py --days 30 --playlist-name "Monthly New Releases"
+--days, -d : Look for releases in the past N days (default: 7)
+--public : Make the playlist public (default: private)
+--playlist-name : Custom name for the playlist (default: New Releases YYYY-MM-DD)
+--delay : Delay between API calls in seconds (default: 0.1)
+--client-id : Spotify Client ID (overrides environment variables or .env)
+--client-secret : Spotify Client Secret (overrides environment variables or .env)
+--redirect-uri : Spotify Redirect URI (overrides environment variables or .env)
+--env-file : Path to a .env file containing Spotify credentials
 ```
 
 ## First Run
-
 When you run the script for the first time:
 1. It will open your default web browser
 2. Ask you to log in to Spotify (if not already logged in)
@@ -115,7 +112,4 @@ If you encounter rate limiting issues:
 Somtimes a restart of Spotify is needed in order to update the playlists. 
 
 ### Stuck on "Fetching followed artists..." or other fetching operations
-Not sure what causes this, but loggin out of the Spotify Developer Web Console and loggin back in fixed this for me. 
-
-## License
-GLWTS
+Not sure what causes this, but loggin out of the Spotify Developer Web Console and loggin back in fixed this for me.
