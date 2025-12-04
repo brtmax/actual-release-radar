@@ -11,6 +11,7 @@ This solves this problem and creates a new playlist with all the recent releases
 
 ## Prerequisites
 - Python 3.x
+- Poetry
 - A Spotify account
 - Spotify Developer credentials (see Setup below)
 
@@ -67,7 +68,7 @@ spotify-radar --days N
 ### Options
 Show all available options:
 ```bash
-python script.py --help
+spotify-radar --help
 ```
 
 ```bash
