@@ -32,6 +32,14 @@ This solves this problem and creates a new playlist with all the recent releases
    - Client Secret (click "Show Client Secret" to reveal it)
 
 #### 2. Environment Setup
+Currently on `test.pypi`
+```bash
+ pip install -i https://test.pypi.org/simple/ spotify-actual-release-radar
+```
+
+##### Installation from Source
+Clone the repository. Then: 
+
 [Poetry](https://python-poetry.org/) is used to manage dependencies. You can install it by: 
 ```
 curl -sSL https://install.python-poetry.org | python3 -
