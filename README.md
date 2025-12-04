@@ -1,23 +1,23 @@
-# Spotify New Releases Playlist Creator
+## Actual Spotify New Releases Playlist Creator
 I got very frustrated with Spotify since they decided that a release radar should not actually contain all your followed artist's new releases, but instead be filled with suggestions and ads.
 This solves this problem and creates a new playlist with all the recent releases of all your followed artists. The code is not pretty, but it works. I believe something similar has been done before, but most of those applications did not fully work for me. 
 
-## Features
+### Features
 - Creates a playlist with new releases from your followed artists
 - Configurable time range (default: last 7 days)
 - Handles both albums and singles
 - Creates either public or private playlists
 - Shows progress and found tracks during execution
 
-## Prerequisites
+### Prerequisites
 - Python 3.x
 - Poetry
 - A Spotify account
 - Spotify Developer credentials (see Setup below)
 
-## Setup
+### Setup
 
-### 1. Spotify Developer Account
+#### 1. Spotify Developer Account
 
 1. Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
 2. Log in with your Spotify account
@@ -31,7 +31,7 @@ This solves this problem and creates a new playlist with all the recent releases
    - Client ID
    - Client Secret (click "Show Client Secret" to reveal it)
 
-### 2. Environment Setup
+#### 2. Environment Setup
 [Poetry](https://python-poetry.org/) is used to manage dependencies. You can install it by: 
 ```
 curl -sSL https://install.python-poetry.org | python3 -
@@ -41,7 +41,7 @@ Then just create a virtual environment and install dependencies:
 poetry install
 ```
 
-### 3. Spotify setup 
+#### 3. Spotify setup 
 You have to authenticate using the client ID and secret from step 1. To do that, either create a .env file like below, or pass in the credentials via
 ```bash
 spotify-radar \
@@ -58,14 +58,14 @@ export SPOTIFY_REDIRECT_URI="http://127.0.0.1:8888/callback"
 ```
 
 Do not use "localhost", see [Spotify security changes](https://developer.spotify.com/blog/2025-02-12-increasing-the-security-requirements-for-integrating-with-spotify).
-## Usage
+##### Usage
 
 Run the script with default settings (7 days, private playlist):
 ```bash
 spotify-radar --days N
 ```
 
-### Options
+#### Options
 Show all available options:
 ```bash
 spotify-radar --help
@@ -82,7 +82,7 @@ spotify-radar --help
 --env-file : Path to a .env file containing Spotify credentials
 ```
 
-## First Run
+##### First Run
 When you run the script for the first time:
 1. It will open your default web browser
 2. Ask you to log in to Spotify (if not already logged in)
@@ -93,24 +93,24 @@ When you run the script for the first time:
 
 After the first run, the authentication token will be cached and you won't need to authenticate again unless the token expires.
 
-## Troubleshooting
+### Troubleshooting
 
-### Authentication Issues
+#### Authentication Issues
 - Make sure your Client ID and Client Secret are correct in the `.env` file
 - Check that the redirect URI in your Spotify App settings matches exactly: `http://localhost:8888/callback`
 - Try deleting the `.cache` file and running the script again
 
-### Rate Limiting
+#### Rate Limiting
 If you encounter rate limiting issues:
 - Increase the delay between API calls: `--delay 0.2` or higher
 - Wait a few minutes before trying again
 
-### No Releases Found
+#### No Releases Found
 - Check that you're following the artists on Spotify
 - Try increasing the number of days to look back: `--days 30`
 
-### Playlist not created
+#### Playlist not created
 Somtimes a restart of Spotify is needed in order to update the playlists. 
 
-### Stuck on "Fetching followed artists..." or other fetching operations
+#### Stuck on "Fetching followed artists..." or other fetching operations
 Not sure what causes this, but loggin out of the Spotify Developer Web Console and loggin back in fixed this for me.
