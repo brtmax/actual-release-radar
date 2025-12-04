@@ -1,4 +1,4 @@
-## Actual Spotify New Releases Playlist Creator
+## Actual Spotify Release Radar
 I got very frustrated with Spotify since they decided that a release radar should not actually contain all your followed artist's new releases, but instead be filled with suggestions and ads.
 This solves this problem and creates a new playlist with all the recent releases of all your followed artists. The code is not pretty, but it works. I believe something similar has been done before, but most of those applications did not fully work for me. 
 
